@@ -1,0 +1,93 @@
+{% extends "temp/layout.html" %}
+{% load static %}
+{% block content %}
+<div class="hero text-center text-white">
+  <div class="hero-content">
+    <h1 class="display-4 fw-bold animate-fade-in">Class Attendance Calendar</h1>
+    <p class="lead animate-slide-up">Upload student lists & records, then generate attendance reports</p>
+  </div>
+</div>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <label>Upload Names of Student:</label>
+    <input type="file" name="my_file" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold" required><br><br>
+
+    <label>Upload Records File:</label>
+    <input type="file" name="my_record" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold" required><br><br>
+    
+<div class="container my-5">
+  <div class="card shadow-lg p-5 animate-fade-up">
+      <div class="calendar-grid">
+        {% for day in days %}
+          <div class="day-box card p-3 shadow-sm mb-3">
+            <h2 class="fw-bold text-primary">Day {{ day }}</h2>
+            {% for slot in slots %}
+
+              <!-- Course selection -->
+              <select name="course{{slot}}_{{day}}" class="form-select mb-2">
+                <option value="">--Select Course--</option>
+                <option value="Pathology Practical">Histopathology</option>
+                <option value="Pathology Practical">Histopathology Practical</option>
+                <option value="Chemical Pathology">Chemical Pathology</option>
+                <option value="Chemical Pathology Practical">Chemical Pathology Practical</option>
+                <option value="Microbiology">Microbiology</option>
+                <option value="Microbiology Practical">Microbiology Practical</option>
+                <option value="Pharmacology">Pharmacology</option>
+                <option value="Pharmacology Practical">Pharmacology Practical</option>
+                <option value="Hematology">Hematology</option>
+                <option value="Hematology Practical">Hematology Practical</option>
+              </select>
+
+              <!-- Start time -->
+              <div class="d-flex mb-2">
+                <select name="start_hour{{slot}}_{{day}}" class="form-select me-2">
+                  {% for h in hours %}
+                    <option value="{{ h|stringformat:'02d' }}">{{ h|stringformat:'02d' }}</option>
+                  {% endfor %}
+                </select>
+                <select name="start_min{{slot}}_{{day}}" class="form-select">
+                  {% for m in minutes %}
+                    <option value="{{ m|stringformat:'02d' }}">{{ m|stringformat:'02d' }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+
+              <!-- End time -->
+              <div class="d-flex mb-3">
+                <select name="end_hour{{slot}}_{{day}}" class="form-select me-2">
+                  {% for h in hours %}
+                    <option value="{{ h|stringformat:'02d' }}">{{ h|stringformat:'02d' }}</option>
+                  {% endfor %}
+                </select>
+                <select name="end_min{{slot}}_{{day}}" class="form-select">
+                  {% for m in minutes %}
+                    <option value="{{ m|stringformat:'02d' }}">{{ m|stringformat:'02d' }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+
+            {% endfor %}
+          </div>
+        {% endfor %}
+      </div>
+  </div>
+</div>
+
+
+
+
+      <button type="submit" class="btn btn-hero w-100 btn-lg">Generate Report</button>
+    </form>
+  </div>
+</div>
+{% if table %}
+    <h3>Attendance Report</h3>
+    <div>
+        {{ table|safe }}
+    </div>
+{% endif %}
+<footer>
+  <p>&copy; {{ now|date:"Y" }} University of Calabar, Nigeria. All rights reserved.</p>
+</footer>
+{% endblock %}
