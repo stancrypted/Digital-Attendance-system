@@ -1,0 +1,30 @@
+{% extends "temp/layout.html" %}
+{% load record_extras %}
+{% block content %}
+
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">Attendance Results for Month: {{ month_id }}</h2>
+
+    {% if results %}
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Course</th>
+        <th>Month</th>
+        <!-- Add other fields as needed -->
+    </tr>
+    {% for record in results %}
+    <tr>
+        <td>{{ record.name }}</td>
+        <td>{{ record.course }}</td>
+        <td>{{ record.month_id }}</td>
+        <!-- Add other fields as needed -->
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+    <div>No results found.</div>
+{% endif %}
+</div>
+
+{% endblock %}

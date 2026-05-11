@@ -1,0 +1,40 @@
+{% extends "temp/layout.html" %}
+
+{% block content %}
+<div class="hero text-center text-white">
+  <div class="hero-content">
+    <h1 class="display-4 fw-bold animate-fade-in">Attendance Report</h1>
+    <p class="lead animate-slide-up">View and download attendance summaries</p>
+  </div>
+</div>
+
+
+  
+    {% if table %}
+      <div class="mt-4 d-flex gap-2 justify-content-center">
+            <!-- Download button -->
+            <a href="{% url 'download_results' %}" class="btn btn-success">
+                ⬇ Download Excel
+            </a>
+        <a href="{% url 'calendar' %}" class="btn btn-secondary">
+                ⬅ Back to Calendar
+            </a>
+      </div>
+      <div class="container my-5">
+        <div class="table-responsive">
+        {{ table|safe }}
+      </div>
+    {% else %}
+      <div class="alert alert-warning text-center">
+        No report data found. Please upload your files first.
+      </div>
+      <div class="text-center mt-3">
+        <a href="{% url 'calendar' %}" class="btn btn-primary btn-lg">⬅ Back to Calendar</a>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<footer>
+</footer>
+{% endblock %}

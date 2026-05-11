@@ -1,0 +1,115 @@
+{% extends "temp/layout.html" %}
+
+{% block content %}
+<!-- Enhanced Hero Section -->
+<div class="hero text-center ">
+  <div class="hero-content">
+    <h1 class="display-3 fw-bold animate-fade-in">University of Calabar</h1>
+    <p class="lead animate-slide-up">Faculty of Basic Clinical Sciences - Student Attendance Register</p>
+    <div class="mt-4">
+      <a href="{% url 'calendar' %}" class="btn btn-hero btn-lg animate-bounce">
+        <i class="bi bi-calendar-check me-2"></i>Go to Calendar
+      </a>
+    </div>
+  </div>
+</div>
+  <body>
+  <h2>Form Submitted Successfully!</h2>
+</body>
+
+<!-- Scroll to Top Button -->
+<div class="scroll-to-top" id="scrollToTop">
+  <i class="bi bi-arrow-up" style="font-size: 1.5rem;"></i>
+</div>
+
+<style>
+/* Additional styles for new elements */
+.stat-box {
+  padding: 20px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.stat-box:hover {
+  transform: translateY(-5px);
+  background: rgba(0, 51, 102, 0.05);
+}
+
+.feature-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
+  border: 2px solid transparent;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 30px rgba(0, 51, 102, 0.2);
+  border-color: #8B4513;
+}
+
+.feature-icon {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.cta-card {
+  background: linear-gradient(135deg, #003366, #8B4513);
+  color: white;
+  border-radius: 24px;
+  box-shadow: 0 10px 40px rgba(0, 51, 102, 0.3);
+}
+
+.cta-card .btn-primary {
+  background: white;
+  color: #003366;
+  border: none;
+  font-weight: 700;
+}
+
+.cta-card .btn-primary:hover {
+  background: #FFD700;
+  color: #003366;
+  transform: translateY(-3px);
+}
+
+.cta-card .btn-outline-primary {
+  border: 2px solid white;
+  color: white;
+}
+
+.cta-card .btn-outline-primary:hover {
+  background: white;
+  color: #003366;
+  transform: translateY(-3px);
+}
+</style>
+
+<script>
+// Scroll to top functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const scrollBtn = document.getElementById('scrollToTop');
+  
+  window.addEventListener('scroll', function() {
+    if (window.pageYOffset > 300) {
+      scrollBtn.classList.add('visible');
+    } else {
+      scrollBtn.classList.remove('visible');
+    }
+  });
+  
+  scrollBtn.addEventListener('click', function() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+});
+</script>
+{% endblock %}

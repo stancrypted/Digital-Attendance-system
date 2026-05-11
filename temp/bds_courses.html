@@ -1,0 +1,431 @@
+{% extends "temp/layout.html" %}
+{% load static %}
+
+{% block content %}
+<!-- Hero Section for Courses -->
+<div class="pathology-hero text-center text-white py-5">
+  <div class="container" data-aos="fade-down">
+    <i class="bi bi-book" style="font-size: 4rem; margin-bottom: 20px;"></i>
+    <h1 class="display-4 fw-bold">Course Selection</h1>
+    <p class="lead">Faculty of Basic Clinical Sciences</p>
+  </div>
+</div>
+
+<div class="container my-5">
+  <!-- Course Selection Cards Grid -->
+  <div class="row g-4 mb-5" data-aos="fade-up">
+    <div class="col-12 text-center mb-4">
+      <h2 class="fw-bold">Select Your Course</h2>
+      <p class="text-muted">Choose a pathology course to view details and schedule</p>
+    </div>
+     <!-- Histopathology Card -->
+    <div class="col-md-6 col-lg-3" data-aos="zoom-in" data-aos-delay="300">
+      <div class="course-card" data-course="Histopathology" data-icon="capsule" data-color="#95E1D3">
+        <div class="course-icon">
+          <i class="bi bi-capsule"></i>
+        </div>
+        <h5 class="fw-bold mt-3">BDS Histopathology</h5>
+        <p class="text-muted small">Study of drugs and their effects</p>
+        <a href="{% url 'B_Histopathology' %}" class="btn btn-sm btn-outline-primary mt-2">View Details</a>
+      </div>
+    </div>
+
+    <!-- Chemical Pathology Card -->
+    <div class="col-md-6 col-lg-3" data-aos="zoom-in" data-aos-delay="100">
+      <div class="course-card" data-course="Chemical Pathology" data-icon="flask" data-color="#FF6B6B">
+        <div class="course-icon">
+          <i class="bi bi-flask"></i>
+        </div>
+        <h5 class="fw-bold mt-3">Chemical Pathology</h5>
+        <p class="text-muted small">Study of biochemical aspects of disease</p>
+        <a href="{% url 'B_Chemical_Pathology' %}" class="btn btn-sm btn-outline-primary mt-2">View Details</a>
+      </div>
+    </div>
+
+    <!-- Microbiology Card -->
+    <div class="col-md-6 col-lg-3" data-aos="zoom-in" data-aos-delay="200">
+      <div class="course-card" data-course="Microbiology" data-icon="virus" data-color="#4ECDC4">
+        <div class="course-icon">
+          <i class="bi bi-virus"></i>
+        </div>
+        <h5 class="fw-bold mt-3">Microbiology</h5>
+        <p class="text-muted small">Study of microorganisms and infections</p>
+        <a href="{% url 'B_Microbiology' %}" class="btn btn-sm btn-outline-primary mt-2">View Details</a>
+      </div>
+    </div>
+
+    <!-- Pharmacology Card -->
+    <div class="col-md-6 col-lg-3" data-aos="zoom-in" data-aos-delay="300">
+      <div class="course-card" data-course="Pharmacology" data-icon="capsule" data-color="#95E1D3">
+        <div class="course-icon">
+          <i class="bi bi-capsule"></i>
+        </div>
+        <h5 class="fw-bold mt-3">Pharmacology</h5>
+        <p class="text-muted small">Study of drugs and their effects</p>
+        <a href="{% url 'B_Pharmacology' %}" class="btn btn-sm btn-outline-primary mt-2">View Details</a>
+      </div>
+    </div>
+
+
+    <!-- Hematology Card -->
+    <div class="col-md-6 col-lg-3" data-aos="zoom-in" data-aos-delay="400">
+      <div class="course-card" data-course="Hematology" data-icon="droplet" data-color="#F38181">
+        <div class="course-icon">
+          <i class="bi bi-droplet-fill"></i>
+        </div>
+        <h5 class="fw-bold mt-3">Hematology</h5>
+        <p class="text-muted small">Study of blood and blood disorders</p>
+        <a href="{% url 'B_Hematology' %}" class="btn btn-sm btn-outline-primary mt-2">View Details</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Alternative: Classic Dropdown (if you prefer) -->
+  <div class="card shadow-lg p-4 mb-5" data-aos="fade-up">
+    <div class="text-center">
+      <h4 class="fw-bold mb-4">Or Use Quick Selection</h4>
+      <div class="dropdown d-inline-block">
+        <button class="btn btn-hero btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="bi bi-list-ul me-2"></i>Select a Pathology Course
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <a class="dropdown-item course-dropdown-item" href="#" data-course="Chemical Pathology">
+              <i class="bi bi-flask me-2" style="color: #FF6B6B;"></i>Chemical Pathology
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item course-dropdown-item" href="#" data-course="Microbiology">
+              <i class="bi bi-virus me-2" style="color: #4ECDC4;"></i>Microbiology
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item course-dropdown-item" href="#" data-course="Pharmacology">
+              <i class="bi bi-capsule me-2" style="color: #95E1D3;"></i>Pharmacology
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item course-dropdown-item" href="#" data-course="Hematology">
+              <i class="bi bi-droplet-fill me-2" style="color: #F38181;"></i>Hematology
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dynamic Content Display Area -->
+  <div class="course-details-card" id="course-content" data-aos="fade-up">
+    <div class="text-center py-5">
+      <i class="bi bi-info-circle" style="font-size: 3rem; color: #ccc;"></i>
+      <p class="text-muted mt-3">Select a course to view detailed information</p>
+    </div>
+  </div>
+
+  <!-- Additional Information Section -->
+  <div class="row mt-5 g-4">
+    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+      <div class="info-box text-center p-4">
+        <i class="bi bi-calendar-check" style="font-size: 2.5rem; color: #003366;"></i>
+        <h5 class="fw-bold mt-3">Weekly Schedule</h5>
+        <p class="text-muted small">Check attendance schedules for all pathology courses</p>
+      </div>
+    </div>
+    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+      <div class="info-box text-center p-4">
+        <i class="bi bi-people" style="font-size: 2.5rem; color: #8B4513;"></i>
+        <h5 class="fw-bold mt-3">Expert Faculty</h5>
+        <p class="text-muted small">Learn from experienced pathology professors</p>
+      </div>
+    </div>
+    <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+      <div class="info-box text-center p-4">
+        <i class="bi bi-graph-up" style="font-size: 2.5rem; color: #FFD700;"></i>
+        <h5 class="fw-bold mt-3">Track Progress</h5>
+        <p class="text-muted small">Monitor your attendance and performance</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+/* Pathology Hero Section */
+.pathology-hero {
+  background: linear-gradient(135deg, #003366 0%, #8B4513 100%);
+  padding: 60px 20px;
+  margin-bottom: 40px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Course Cards */
+.course-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 30px 20px;
+  text-align: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid transparent;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.course-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #003366, #8B4513);
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+
+.course-card:hover::before {
+  transform: scaleX(1);
+}
+
+.course-card:hover {
+  transform: translateY(-15px) scale(1.03);
+  box-shadow: 0 15px 40px rgba(0, 51, 102, 0.25);
+  border-color: #8B4513;
+}
+
+.course-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #003366, #8B4513);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: white;
+  transition: all 0.4s ease;
+}
+
+.course-card:hover .course-icon {
+  transform: rotate(360deg) scale(1.1);
+  box-shadow: 0 8px 20px rgba(139, 69, 19, 0.4);
+}
+
+/* Course Details Card */
+.course-details-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  min-height: 300px;
+  transition: all 0.5s ease;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.course-details-card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Info Boxes */
+.info-box {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.info-box:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  border-color: #003366;
+}
+
+/* Enhanced Dropdown Items */
+.course-dropdown-item {
+  transition: all 0.3s ease;
+  padding: 12px 20px;
+  border-radius: 8px;
+  margin: 5px 10px;
+}
+
+.course-dropdown-item:hover {
+  background: linear-gradient(135deg, #003366, #8B4513);
+  color: white;
+  transform: translateX(8px);
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const contentBox = document.getElementById("course-content");
+  const courseCards = document.querySelectorAll(".course-card");
+  const dropdownItems = document.querySelectorAll(".course-dropdown-item");
+
+  // Course information database
+  const courseInfo = {
+    "Chemical Pathology": {
+      icon: "flask",
+      color: "#FF6B6B",
+      description: "Chemical Pathology focuses on the biochemical aspects of disease, including laboratory analysis of blood, urine, and other body fluids.",
+      topics: ["Clinical Chemistry", "Biochemical Analysis", "Metabolic Disorders", "Enzyme Studies"],
+      duration: "2 Semesters",
+      credits: "4 Units"
+    },
+    "Microbiology": {
+      icon: "virus",
+      color: "#4ECDC4",
+      description: "Microbiology covers the study of microorganisms including bacteria, viruses, fungi, and parasites that cause diseases.",
+      topics: ["Bacteriology", "Virology", "Mycology", "Parasitology", "Immunology"],
+      duration: "2 Semesters",
+      credits: "4 Units"
+    },
+    "Pharmacology": {
+      icon: "capsule",
+      color: "#95E1D3",
+      description: "Pharmacology examines the effects of drugs on living organisms, drug interactions, and therapeutic applications.",
+      topics: ["Drug Mechanisms", "Pharmacokinetics", "Toxicology", "Clinical Pharmacology"],
+      duration: "2 Semesters",
+      credits: "4 Units"
+    },
+    "Hematology": {
+      icon: "droplet-fill",
+      color: "#F38181",
+      description: "Hematology is the study of blood, blood-forming organs, and blood diseases including anemia and leukemia.",
+      topics: ["Blood Cell Analysis", "Coagulation Studies", "Blood Disorders", "Transfusion Medicine"],
+      duration: "2 Semesters",
+      credits: "3 Units"
+    }
+  };
+
+  // Function to display course details
+  function displayCourseDetails(courseName) {
+    const info = courseInfo[courseName];
+    if (!info) return;
+
+    contentBox.classList.remove("show");
+    
+    setTimeout(() => {
+      contentBox.innerHTML = `
+        <div class="text-center mb-4">
+          <div class="course-detail-icon mb-3">
+            <i class="bi bi-${info.icon}" style="font-size: 3rem; color: ${info.color};"></i>
+          </div>
+          <h3 class="fw-bold" style="color: #003366;" data-aos="zoom-in">${courseName}</h3>
+        </div>
+        
+        <div class="row mt-4">
+          <div class="col-md-8 mx-auto">
+            <p class="lead text-muted" data-aos="fade-up">${info.description}</p>
+            
+            <div class="row mt-4 g-3">
+              <div class="col-md-6" data-aos="fade-right">
+                <div class="detail-badge">
+                  <i class="bi bi-clock me-2"></i><strong>Duration:</strong> ${info.duration}
+                </div>
+              </div>
+              <div class="col-md-6" data-aos="fade-left">
+                <div class="detail-badge">
+                  <i class="bi bi-award me-2"></i><strong>Credits:</strong> ${info.credits}
+                </div>
+              </div>
+            </div>
+            
+            <div class="mt-4" data-aos="fade-up" data-aos-delay="200">
+              <h5 class="fw-bold mb-3">Key Topics Covered:</h5>
+              <div class="topic-tags">
+                ${info.topics.map(topic => `<span class="topic-tag">${topic}</span>`).join('')}
+              </div>
+            </div>
+            
+            <div class="mt-4 d-flex justify-content-center gap-3" data-aos="fade-up" data-aos-delay="300">
+              <a href="{% url 'calendar' %}" class="btn btn-primary">
+                <i class="bi bi-calendar-check me-2"></i>View Schedule
+              </a>
+              <a href="{% url 'results' %}" class="btn btn-outline-primary">
+                <i class="bi bi-graph-up me-2"></i>View Results
+              </a>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      contentBox.classList.add("show");
+      AOS.refresh();
+    }, 300);
+  }
+
+  // Card click handlers
+  courseCards.forEach(card => {
+    card.addEventListener("click", (e) => {
+      if (!e.target.classList.contains('btn')) {
+        const courseName = card.dataset.course;
+        displayCourseDetails(courseName);
+        contentBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+  });
+
+  // Dropdown item handlers
+  dropdownItems.forEach(item => {
+    item.addEventListener("click", (e) => {
+      e.preventDefault();
+      const courseName = item.dataset.course;
+      displayCourseDetails(courseName);
+      contentBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  });
+});
+</script>
+
+<style>
+/* Additional styles for course details */
+.course-detail-icon {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  background: rgba(0, 51, 102, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulse 2s infinite;
+}
+
+.detail-badge {
+  background: rgba(0, 51, 102, 0.05);
+  padding: 15px;
+  border-radius: 12px;
+  border-left: 4px solid #8B4513;
+}
+
+.topic-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.topic-tag {
+  background: linear-gradient(135deg, #003366, #8B4513);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.topic-tag:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 51, 102, 0.3);
+}
+</style>
+{% endblock %}

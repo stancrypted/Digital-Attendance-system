@@ -1,0 +1,49 @@
+{% extends "temp/layout.html" %}
+{% load static %}
+{% block content %}
+
+
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">📊 Attendance Report</h2>
+<div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        
+            <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="b-example-divider"></div>
+            
+            <!-- <li><a button href="{% url 'pathology' %}" class="nav-link px-2 link-secondary rounded-pill px-3" type="button">Pathology</a></li> -->
+            
+            </div>    
+    {% if table %}
+    <!-- Download Button -->
+
+        <div class="mt-4 d-flex gap-2 justify-content-center">
+            <!-- Download button -->
+            <a href="{% url 'download_results' %}" class="btn btn-success">
+                ⬇ Download Excel
+            </a>
+
+            <!-- Back button -->
+            <a href="{% url 'calendar' %}" class="btn btn-secondary">
+                ⬅ Back to Calendar
+            </a>
+        </div>
+        <div class="table-responsive">
+            {{ table|safe }}
+        </div>
+    
+
+    {% else %}
+        <div class="alert alert-warning text-center">
+            No report data found. Please upload your files first.
+        </div>
+        <div class="text-center mt-3">
+            <a href="{% url 'calendar' %}" class="btn btn-primary">
+                ⬅ Back to Calendar
+            </a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+
